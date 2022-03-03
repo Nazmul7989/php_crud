@@ -8,8 +8,25 @@ if (isset($_GET['message'])) {
     $message = $_GET['message'];
 }
 
+//select data from database
 $selectSQL = "SELECT * FROM `students`";
 $runSelectSQL = mysqli_query($connection, $selectSQL);
+
+//delete data from database
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+
+    $deleteSQL = "DELETE FROM `students` WHERE `id`='$id'";
+    $runDeleteSQL = mysqli_query($connection, $deleteSQL);
+
+    if ($runDeleteSQL == true) {
+
+        header('location:main.php?message= Student info deleted successfully.');
+    }else{
+
+        header('location:main.php?message= Opps! Student info delete failed.');
+    }
+}
 
 
 ?>
@@ -24,7 +41,7 @@ $runSelectSQL = mysqli_query($connection, $selectSQL);
     <link rel="stylesheet" href="asset/css/bootstrap.min.css">
     <link rel="stylesheet" href="asset/css/all.min.css">
     <link rel="stylesheet" href="asset/css/fontawesome.min.css">
-    <title>Create Student</title>
+    <title> Student Crud</title>
 </head>
 <body>
 
@@ -42,8 +59,12 @@ $runSelectSQL = mysqli_query($connection, $selectSQL);
                     </div>
                 <?php }?>
 
+                <div class="clearfix">
+                    <h4 class="float-left">Student Info</h4>
+                    <a href="create.php" class="float-right btn btn-success btn-sm">Add New</a>
+                </div>
+
                 <table class="table table-bordered mt-3">
-                    <h4 class="text-center">Student Info</h4>
                     <thead>
                     <tr>
                         <th>Name</th>
@@ -60,10 +81,10 @@ $runSelectSQL = mysqli_query($connection, $selectSQL);
                             <td><?php echo $student['phone']?></td>
                             <td><?php echo $student['email']?></td>
                             <td>
-                                <a href="" class="btn btn-success btn-sm"><i class="fa fa-pen"></i></a>
-                                <form action="" class="d-inline ml-1">
-                                    <button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
-                                </form>
+                                <a href="edit.php?id=<?php echo $student['id']?>" class="btn btn-success btn-sm"><i class="fa fa-pen"></i></a>
+                                <a href="main.php?id=<?php echo $student['id']?>"  class="btn btn-danger btn-sm" onclick="return confirm('Do you want to delete?')">
+                                    <i class="fa fa-trash"></i>
+                                </a>
                             </td>
                         </tr>
                     <?php } ?>

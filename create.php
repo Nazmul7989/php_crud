@@ -43,17 +43,13 @@ if (isset($_POST['submit'])) {
         <div class="row d-flex justify-content-center">
             <div class="col-6">
                 <div class="card px-4 py-4">
+                    <div class="clearfix">
+                        <h4 class="float-left">Add New Student</h4>
+                        <a href="main.php" class="float-right btn btn-success btn-sm">Back to Home</a>
+                    </div>
+                    <hr>
 
-                    <?php if ($message != false) { ?>
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            <strong><?php echo $message ?></strong>
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                   <?php }?>
-
-                    <form action="create.php" method="post">
+                    <form action="" method="post">
 
                         <div class="row">
                             <div class="col-12">
