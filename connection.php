@@ -3,7 +3,7 @@
 $dbHost = 'localhost';
 $dbUser = 'root';
 $dbPassword = '';
-$dbName = 'image_upload';
+$dbName = 'php_crud';
 
 $connection = mysqli_connect($dbHost,$dbUser,$dbPassword,$dbName);
 

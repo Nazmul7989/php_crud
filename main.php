@@ -50,7 +50,7 @@ if (isset($_GET['id'])) {
         <div class="col-10">
             <div class="card px-4 py-4">
 
-                <?php if ($message != false) { ?>
+                <?php if ($message != '') { ?>
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
                         <strong><?php echo $message ?></strong>
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
